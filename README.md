@@ -1,4 +1,4 @@
-# Expensess en PHP
+# Expenses-app
 
 ## Config proyecto
 
