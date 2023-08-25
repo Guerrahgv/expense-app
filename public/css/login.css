@@ -1,0 +1,30 @@
+body{
+    background:  rgb(7 55 77) !important;
+}
+#login-main{
+    background-color: white;
+    border-radius: 30px;
+    padding: 20px;
+    width: 300px;
+    margin: calc((100vh - 500px)/2) auto 0 auto;
+}
+
+#login-main h2{
+    padding: 20px 0;
+}
+
+#login-main p{
+    padding: 10px 0;
+}
+
+
+
+.logo-expenses img{
+    width: 100px;
+}
+
+.fcenterf{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
