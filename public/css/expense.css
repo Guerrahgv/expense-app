@@ -1,9 +1,23 @@
 
 #form-expense-container{
-    padding: 10px 30px;
-    width: 100%;
+    padding: 10px 30px !important;
+   /* width: 100%;*/
 }
 
+.form-expense-container{
+    padding: 10px 30px !important;
+}
+
+
+.form-expense-container h3{
+    text-align: center;
+}
 #form-expense-container .section{
     padding: 10px 0;
+}
+
+.text__area input{
+    width: 332px;
+    height: 100px;
+  
 }

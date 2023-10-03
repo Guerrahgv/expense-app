@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/expense.css">
 
 
-<form id="form-expense-container" action="admin/newCategory" method="POST">
+<form class="form-expense-container" id="form-expense-container" action="admin/newCategory" method="POST">
     <h3>Registrar nueva categoria</h3>
     <div class="section">
         <label for="amount">Nombre</label>

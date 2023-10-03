@@ -13,20 +13,20 @@ class ExpensesModel extends Model implements IModel{
         parent::__construct();
     }
 
-    public function save(){
-        try{
-            $query = $this->prepare('INSERT INTO expenses (title, amount, category_id, date, id_user) VALUES(:title, :amount, :category, :d, :user)');
+    public function save() {
+        try {
+            // Llamada al procedimiento almacenado
+            $query = $this->prepare("CALL InsertExpense(:title, :amount, :category, :user, :date)");
             $query->execute([
-                'title' => $this->title, 
-                'amount' => $this->amount, 
-                'category' => $this->categoryid, 
-                'user' => $this->userid, 
-                'd' => $this->date
+                'title' => $this->title,
+                'amount' => $this->amount,
+                'category' => $this->categoryid,
+                'user' => $this->userid,
+                'date' => $this->date
             ]);
-            if($query->rowCount()) return true;
-
-            return false;
-        }catch(PDOException $e){
+    
+            return true; // El procedimiento almacenado ya maneja la validación de inserción
+        } catch (PDOException $e) {
             return false;
         }
     }

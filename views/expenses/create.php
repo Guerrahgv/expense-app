@@ -6,24 +6,27 @@
 <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/expense.css">
 
 
-<form id="form-expense-container" action="expenses/newExpense" method="POST">
+<form class="form-expense-container" id="form-expense-container" action="expenses/newExpense" method="POST">
     <h3>Registrar nuevo gasto</h3>
     <div class="section">
-        <label for="amount">Cantidad</label>
-        <input type="number" name="amount" id="amount" autocomplete="off" required>
+        <label for="amount"><strong>Cantidad</strong></label>
+        <input type="number" name="amount" id="amount" autocomplete="off" value="1" required min="1" max="999999999" pattern="^[1-9][0-9]{0,8}$">
+
     </div>
-    <div class="section">
-        <label for="title">Descripción</label>
-        <div><input type="text" name="title" autocomplete="off" required></div>
+    <div class="section text__area">
+        <label for="title"><strong>Descripción</strong></label>
+        <div><input id="text__area" type="text" name="title" autocomplete="off" required
+           placeholder="Ingrese descripción del gasto.."
+           pattern="^(?!\s)(?=\S)(?!.*\s$)[a-zA-Z]{10,40}$"></div>
     </div>
     
     <div class="section">
-        <label for="date">Fecha de gasto</label>
-        <input type="date" name="date" id="" required>
+        <label for="date"><strong>Fecha de gasto</strong></label>
+        <input type="date" name="date" required min="<?php echo date('2023-01-01'); ?>">
     </div>    
 
     <div class="section">
-        <label for="categoria">Categoria</label>
+        <label for="categoria"><strong>Categoria        </strong></label>
             <select name="category" id="" required>
             <?php 
                 foreach ($categories as $cat) {
