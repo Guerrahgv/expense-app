@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/default.css">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/login.css">
     <link rel="icon" type="image/png" href=" <?php echo constant('URL'); ?>public/img/icons/expenses.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script  src="<?php echo constant('URL'); ?>public/js/appJQ.js" defer></script>
+
 </head>
 <body>
     <?php require 'views/header.php'; ?>
@@ -35,8 +39,8 @@
                 <input type="submit" value="Iniciar sesión" />
             </div>
 
-            <div class="not-acount fcenterf">
-                ¿No tienes cuenta? <a href="<?php echo constant('URL'); ?>signup">Registrarse</a>
+            <div class="not-acount fcenterf" style="margin-top:10px;">
+                <pre>¿No tienes cuenta? </pre> <a href="<?php echo constant('URL'); ?>signup">Registrarse</a>
             </div>
         </form>
     </div>

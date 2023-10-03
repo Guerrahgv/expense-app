@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/login.css">
     <link rel="icon" type="image/png" href=" <?php echo constant('URL'); ?>public/img/icons/expenses.ico">
+    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/default.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script  src="<?php echo constant('URL'); ?>public/js/appJQ.js" defer></script>
     <title>Registrarse</title>
 </head>
 <body>
@@ -25,17 +28,17 @@
 
             <p>
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" pattern="^[a-zA-Z0-9]{5,30}$" title="El campo debe ser alfanumérico y tener entre 5 y 30 caracteres" required>
             </p>
             <p>
                 <label for="password">password</label>
-                <input type="text" name="password" id="password">
+                <input type="text" name="password" id="password" pattern="^(?!\s)(?=\S)(?!.*\s$)[a-zA-Z0-9]{5,30}$" title="El campo debe ser alfanumérico y tener entre 5 y 30 caracteres" required>
             </p>
             <div class="fcenterf">
-                <input type="submit" value="Iniciar sesión" />
+                <input type="submit" value="Registrarse" />
             </div>
-            <div class="yes-acount fcenterf">
-                ¿Tienes una cuenta? <a href="<?php echo constant('URL'); ?>">Iniciar sesion</a>
+            <div class="yes-acount fcenterf" style="margin-top:10px;">
+                <pre>¿Tienes una cuenta? </pre> <a href="<?php echo constant('URL'); ?>">Iniciar sesion</a>
             </div>
         </form>
     </div>

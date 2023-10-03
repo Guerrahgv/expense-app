@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "classmap": [
+            "classes/", "config/", "controllers/", "libs/", "test/"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "require": {
+        "symfony/http-foundation": "^6.3"
+    }
+}

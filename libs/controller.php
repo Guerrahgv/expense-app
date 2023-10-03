@@ -28,16 +28,16 @@ class Controller{
      * La instancia del modelo se asigna a la propiedad "$this->model".
      */
 
-    function existPOST($params){
+     function existPOST($params){
         foreach ($params as $param) {
             if(!isset($_POST[$param])){
                 error_log("ExistPOST: No existe el parametro $param" );
                 return false;
             }
         }
-        error_log( "ExistPOST: Existen parámetros" );
         return true;
     }
+    
     /*
      * Verifica la existencia de parámetros en la variable $_POST.
      * Recibe un arreglo de parámetros como argumento y recorre cada uno de ellos.

@@ -21,7 +21,7 @@ class Errors{
     const ERROR_SIGNUP_NEWUSER                   = "1fdce6bbf47d6b26a9cd809ea1910222";
     const ERROR_SIGNUP_NEWUSER_EMPTY             = "a5bcd7089d83f45e17e989fbc86003ed";
     const ERROR_SIGNUP_NEWUSER_EXISTS            = "a74accfd26e06d012266810952678cf3";
-
+    const ERROR_SIGNUP_NEWUSER_INVA_DATE         = "a74a88fd26e06d012266810952678cf393";
 
     private $errorsList = [];
 
@@ -43,10 +43,11 @@ class Errors{
             Errors::ERROR_USER_UPDATEPHOTO_FORMAT   => 'El archivo no es una imagen',
             Errors::ERROR_LOGIN_AUTHENTICATE        => 'Hubo un problema al autenticarse',
             Errors::ERROR_LOGIN_AUTHENTICATE_EMPTY  => 'Los parámetros para autenticar no pueden estar vacíos',
-            Errors::ERROR_LOGIN_AUTHENTICATE_DATA   => 'Nombre de usuario y/o password incorrectos',
+            Errors::ERROR_LOGIN_AUTHENTICATE_DATA   => 'Nombre de usuario y/o password incorrectos o vacios',
             Errors::ERROR_SIGNUP_NEWUSER            => 'Hubo un error al intentar registrarte. Intenta de nuevo',
             Errors::ERROR_SIGNUP_NEWUSER_EMPTY      => 'Los campos no pueden estar vacíos',
             Errors::ERROR_SIGNUP_NEWUSER_EXISTS     => 'El nombre de usuario ya existe, selecciona otro',
+            Errors::ERROR_SIGNUP_NEWUSER_INVA_DATE  => 'los campos debe tener entre 5 y 30 caracteres',
         ];
     }
 

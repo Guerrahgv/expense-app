@@ -1,0 +1,21 @@
+
+    {
+        "version": "0.2.0",
+        "configurations": [
+          {
+            "name": "Listen for XDebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,  // Asegúrate de que coincide con xdebug.client_port
+            "stopOnEntry": false,
+            "pathMappings": {
+              "/path/to/your/source": "${workspaceFolder}"
+            },
+            "ignore": [],
+            "serverSourceRoot": "/path/to/your/source",
+            "localSourceRoot": "${workspaceFolder}",
+            "remoteHost": "127.0.0.1"  // Asegúrate de que coincide con xdebug.client_host
+          }
+        ]
+      }
+      
