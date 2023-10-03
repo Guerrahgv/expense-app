@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2023 a las 19:31:01
+-- Tiempo de generación: 03-10-2023 a las 03:16:48
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `expenseapp`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SaveUser` (IN `p_username` VARCHAR(255), IN `p_password` VARCHAR(255), IN `p_role` VARCHAR(255), IN `p_budget` DECIMAL(10,2), IN `p_photo` VARCHAR(255), IN `p_name` VARCHAR(255))   BEGIN
+    INSERT INTO users (username, password, role, budget, photo, name)
+    VALUES (p_username, p_password, p_role, p_budget, p_photo, p_name);
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -42,7 +53,8 @@ INSERT INTO `categories` (`id`, `name`, `color`) VALUES
 (2, 'hogar', '#DE1FAA'),
 (3, 'ropa', '#B01FDE'),
 (4, 'Juegos', '#681FDE'),
-(5, 'Viajes', '#1FAADE');
+(5, 'Viajes', '#1FAADE'),
+(6, 'Compulsivas', '#a3f0ff');
 
 -- --------------------------------------------------------
 
@@ -81,7 +93,8 @@ INSERT INTO `expenses` (`id`, `title`, `category_id`, `amount`, `date`, `id_user
 (23, 'pastillas para la tos', 2, 2100.00, '2023-01-16', 5),
 (24, 'Compra sueter', 3, 300000.00, '2023-04-01', 5),
 (25, 'juego Nintendo', 4, 200000.00, '2023-05-09', 5),
-(26, 'buy coffee students ', 1, 45000.00, '2023-06-13', 5);
+(26, 'buy coffee students ', 1, 45000.00, '2023-06-13', 5),
+(27, 'mermelada', 1, 2.00, '2023-09-27', 5);
 
 -- --------------------------------------------------------
 
@@ -104,7 +117,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `budget`, `photo`, `name`) VALUES
-(5, 'roberto', '$2y$10$2rSgJFpMQIu846sVP3uV8eRGqQ2xW4DWaERiXNgQHH86h/pDSpwBy', 'user', 5000000.00, 'roberto.jpg', 'Roberto Fernandez'),
+(5, 'roberto', '$2y$10$2rSgJFpMQIu846sVP3uV8eRGqQ2xW4DWaERiXNgQHH86h/pDSpwBy', 'user', 10000000.00, 'roberto.jpg', 'Roberto Fernadez'),
 (6, 'prueba', '$2y$10$gMCScVEtrGcKTXVahN2z5OyW6WZowx0PaySZgGYIGx5gXKHspNt16', 'user', 16000.00, '', 'prueba'),
 (7, 'Henry', '$2y$10$dlU7zI0cnJ6cUphgEipDReNhEL6/VHp4ELa7sLOiWnkcnVf35Gw82', 'user', 20000.00, '', 'henry'),
 (8, 'admin', '$2y$10$3Hxc2UAimmUWsb46c3SbH.mSlmFPQuK/WwIsdQL0zFxzulSonsFnG', 'admin', 0.00, '', '');
@@ -142,19 +155,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- Restricciones para tablas volcadas

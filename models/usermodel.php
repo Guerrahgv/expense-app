@@ -104,7 +104,7 @@ class UserModel extends Model implements IModel{
 
     public function save(){
         try{
-            $query = $this->prepare('INSERT INTO users (username, password, role, budget, photo, name) VALUES(:username, :password, :role, :budget, :photo, :name )');
+            $query = $this->prepare('CALL SaveUser(:username, :password, :role, :budget, :photo, :name)');
             $query->execute([
                 'username'  => $this->username, 
                 'password'  => $this->password,
@@ -112,14 +112,14 @@ class UserModel extends Model implements IModel{
                 'budget'    => $this->budget,
                 'photo'     => $this->photo,
                 'name'      => $this->name
-                ]);
+            ]);
+    
             return true;
-        }catch(PDOException $e){
+        } catch(PDOException $e){
             echo $e;
             return false;
         }
-    } 
-
+    }
     public function getAll(){
         $items = [];
 
