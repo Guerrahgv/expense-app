@@ -55,7 +55,7 @@ class Signup extends SessionController {
         } else {
             // Error, cargar vista con errores
             $this->redirect('signup', ['error' => Errors::ERROR_SIGNUP_NEWUSER_INVA_DATE]);
-            return;
+             return;
         }
     }
 }

@@ -31,6 +31,6 @@ class SignupTest extends TestCase {
         $signup->newUser();
         $output = ob_get_clean();
 
-        $this->expectOutputString($output);
+        $this->assertEmpty($output);
     }
 }
