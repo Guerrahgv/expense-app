@@ -22,7 +22,7 @@ class Errors{
     const ERROR_SIGNUP_NEWUSER_EMPTY             = "a5bcd7089d83f45e17e989fbc86003ed";
     const ERROR_SIGNUP_NEWUSER_EXISTS            = "a74accfd26e06d012266810952678cf3";
     const ERROR_SIGNUP_NEWUSER_INVA_DATE         = "a74a88fd26e06d012266810952678cf393";
-
+    const ERROR_EXPENSES_INVALID_FIELDS          = "dsdhdce6bbf47d6b26a9cd809ea191022";
     private $errorsList = [];
 
     public function __construct()
@@ -48,6 +48,7 @@ class Errors{
             Errors::ERROR_SIGNUP_NEWUSER_EMPTY      => 'Los campos no pueden estar vacíos',
             Errors::ERROR_SIGNUP_NEWUSER_EXISTS     => 'El nombre de usuario ya existe, selecciona otro',
             Errors::ERROR_SIGNUP_NEWUSER_INVA_DATE  => 'los campos debe tener entre 5 y 30 caracteres',
+            Errors::ERROR_EXPENSES_INVALID_FIELDS   => 'verifique los campos de gasto, Intente nuevamente', 
         ];
     }
 

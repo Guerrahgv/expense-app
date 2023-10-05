@@ -9,15 +9,15 @@
 <form class="form-expense-container" id="form-expense-container" action="expenses/newExpense" method="POST">
     <h3>Registrar nuevo gasto</h3>
     <div class="section">
-        <label for="amount"><strong>Cantidad</strong></label>
-        <input type="number" name="amount" id="amount" autocomplete="off" value="1" required min="1" max="999999999" pattern="^[1-9][0-9]{0,8}$">
+        <label for="amount"><strong>Cantidad gastada</strong></label>
+        <input type="number" name="amount" id="amount" autocomplete="off" value="100" required min="3" max="999999999" pattern="/^[1-9][0-9]{0,8}$/" title="Ingrese una cantidad entre 100 y 999999999">
 
     </div>
     <div class="section text__area">
         <label for="title"><strong>Descripción</strong></label>
-        <div><input id="text__area" type="text" name="title" autocomplete="off" required
+        <div><input id="text__area" type="textarea" name="title" autocomplete="off" required
            placeholder="Ingrese descripción del gasto.."
-           pattern="^(?!\s)(?=\S)(?!.*\s$)[a-zA-Z]{10,40}$"></div>
+           pattern="^(?!\s)[A-Za-z ]{10,40}(?!\s)$" title="Ingrese una descripcion entre 10 y 40 carateres"></div>
     </div>
     
     <div class="section">

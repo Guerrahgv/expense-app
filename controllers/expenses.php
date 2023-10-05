@@ -25,28 +25,46 @@ class Expenses extends SessionController{
    
     //crea el nuevo expense (gasto)
     function newExpense(){
-       
-        if(!$this->existPOST(['title', 'amount', 'category', 'date'])){
+        $patternTitle = "^(?!\s)[A-Za-z ]{10,40}(?!\s)$"; // title
+        $patternAmount = "/^[1-9][0-9]{0,8}$/"; // amount
+        
+        if (!$this->existPOST(['title', 'amount', 'category', 'date'])) {
             $this->redirect('dashboard', ['error' => Errors::ERROR_EXPENSES_NEWEXPENSE_EMPTY]);
             return;
         }
-
-        if($this->user == NULL){
+        
+        
+        if ($this->user == NULL) {
             $this->redirect('dashboard', ['error' => Errors::ERROR_EXPENSES_NEWEXPENSE]);
             return;
         }
-
+        
+        
+        //validaciones
+        if (
+            !preg_match('/^(?!\s)[A-Za-z ]{10,40}(?!\s)$/', $this->getPost('title')) ||
+            !preg_match('/^[1-9][0-9]{0,8}$/', $this->getPost('amount')) ||
+            empty($this->getPost('category')) ||
+            empty($this->getPost('date'))
+        ) {
+            $this->redirect('dashboard', ['error' => Errors::ERROR_EXPENSES_INVALID_FIELDS]);
+            return;
+        }
+        
         $expense = new ExpensesModel();
-
+        
         $expense->setTitle($this->getPost('title'));
         $expense->setAmount((float)$this->getPost('amount'));
         $expense->setCategoryId($this->getPost('category'));
         $expense->setDate($this->getPost('date'));
         $expense->setUserId($this->user->getId());
-
+        
         $expense->save();
         $this->redirect('dashboard', ['success' => Success::SUCCESS_EXPENSES_NEWEXPENSE]);
     }
+    
+    
+
 
     // cargo las categorias para mandar los expenses
     function create(){
