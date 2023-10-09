@@ -1,0 +1,28 @@
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.3/phpunit.xsd"
+    backupGlobals="false"
+    colors="true"
+    bootstrap="vendor/autoload.php">
+
+    <php>
+        <!-- Other PHP configuration options go here -->
+    </php>
+
+    <testsuites>
+        <testsuite name="My Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <blacklist>
+            <directory suffix=".phtml">./</directory>
+        </blacklist>
+    </filter>
+
+    <!-- This is the debug section -->
+    <logging>
+        <log type="testdox-text" target="php://stdout"/>
+    </logging>
+</phpunit>

@@ -105,7 +105,7 @@ class ComposerStaticInitc8fad7d16f556d79dd8382ad9ac17c3c
         'Errores' => __DIR__ . '/../..' . '/controllers/errores.php',
         'Errors' => __DIR__ . '/../..' . '/classes/errors.php',
         'Expenses' => __DIR__ . '/../..' . '/controllers/expenses.php',
-        'ExpensesTest' => __DIR__ . '/../..' . '/test/ExpensesTest.php',
+        'ExpensesModelTest' => __DIR__ . '/../..' . '/test/ExpensesModelTest.php',
         'IModel' => __DIR__ . '/../..' . '/libs/imodel.php',
         'Login' => __DIR__ . '/../..' . '/controllers/login.php',
         'Logout' => __DIR__ . '/../..' . '/controllers/logout.php',

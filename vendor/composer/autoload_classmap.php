@@ -50,7 +50,7 @@ return array(
     'Errores' => $baseDir . '/controllers/errores.php',
     'Errors' => $baseDir . '/classes/errors.php',
     'Expenses' => $baseDir . '/controllers/expenses.php',
-    'ExpensesTest' => $baseDir . '/test/ExpensesTest.php',
+    'ExpensesModelTest' => $baseDir . '/test/ExpensesModelTest.php',
     'IModel' => $baseDir . '/libs/imodel.php',
     'Login' => $baseDir . '/controllers/login.php',
     'Logout' => $baseDir . '/controllers/logout.php',
