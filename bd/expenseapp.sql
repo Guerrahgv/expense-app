@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2023 a las 03:16:48
+-- Tiempo de generación: 10-10-2023 a las 15:35:39
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -25,6 +25,33 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertExpense` (IN `p_title` VARCHAR(255), IN `p_amount` DECIMAL(10,2), IN `p_category` INT, IN `p_user` INT, IN `p_date` DATE)   BEGIN
+    DECLARE validation_failed BOOLEAN;
+
+    SET validation_failed = FALSE;
+
+    IF (p_title IS NULL OR p_amount IS NULL OR p_category IS NULL OR p_user IS NULL OR p_date IS NULL) THEN
+        SET validation_failed = TRUE;
+    ELSE
+        IF NOT (p_title REGEXP '^(?!\s)[A-Za-z ]{10,40}(?!\s)$') THEN
+            SET validation_failed = TRUE;
+        ELSE
+            IF NOT (p_amount > 0 AND p_amount <= 99999999.99) THEN
+                SET validation_failed = TRUE;
+            END IF;
+        END IF;
+    END IF;
+
+    IF validation_failed THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Error: Validación de datos falló';
+    ELSE
+        INSERT INTO expenses (title, amount, category_id, id_user, date)
+        VALUES (p_title, p_amount, p_category, p_user, p_date);
+        SELECT 'Operación exitosa' AS Resultado;
+    END IF;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SaveUser` (IN `p_username` VARCHAR(255), IN `p_password` VARCHAR(255), IN `p_role` VARCHAR(255), IN `p_budget` DECIMAL(10,2), IN `p_photo` VARCHAR(255), IN `p_name` VARCHAR(255))   BEGIN
     INSERT INTO users (username, password, role, budget, photo, name)
     VALUES (p_username, p_password, p_role, p_budget, p_photo, p_name);
@@ -94,7 +121,7 @@ INSERT INTO `expenses` (`id`, `title`, `category_id`, `amount`, `date`, `id_user
 (24, 'Compra sueter', 3, 300000.00, '2023-04-01', 5),
 (25, 'juego Nintendo', 4, 200000.00, '2023-05-09', 5),
 (26, 'buy coffee students ', 1, 45000.00, '2023-06-13', 5),
-(27, 'mermelada', 1, 2.00, '2023-09-27', 5);
+(27, 'mermelada', 1, 20000.00, '2023-09-27', 5);
 
 -- --------------------------------------------------------
 
@@ -120,7 +147,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `budget`, `photo`, `n
 (5, 'roberto', '$2y$10$2rSgJFpMQIu846sVP3uV8eRGqQ2xW4DWaERiXNgQHH86h/pDSpwBy', 'user', 10000000.00, 'roberto.jpg', 'Roberto Fernadez'),
 (6, 'prueba', '$2y$10$gMCScVEtrGcKTXVahN2z5OyW6WZowx0PaySZgGYIGx5gXKHspNt16', 'user', 16000.00, '', 'prueba'),
 (7, 'Henry', '$2y$10$dlU7zI0cnJ6cUphgEipDReNhEL6/VHp4ELa7sLOiWnkcnVf35Gw82', 'user', 20000.00, '', 'henry'),
-(8, 'admin', '$2y$10$3Hxc2UAimmUWsb46c3SbH.mSlmFPQuK/WwIsdQL0zFxzulSonsFnG', 'admin', 0.00, '', '');
+(8, 'admin', '$2y$10$3Hxc2UAimmUWsb46c3SbH.mSlmFPQuK/WwIsdQL0zFxzulSonsFnG', 'admin', 0.00, '', ''),
+(68, 'testuser', '$2y$10$VxVLorATvcDjV6AUxG04veMCqlPTIFJ.wM7Icx40Q88mTHUMucD7W', 'user', 0.00, '', '');
 
 --
 -- Índices para tablas volcadas
@@ -161,13 +189,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de la tabla `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- Restricciones para tablas volcadas
