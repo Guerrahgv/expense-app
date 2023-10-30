@@ -39,6 +39,6 @@
     </div>    
 
     <div class="center">
-        <input type="submit" value="Nuevo expense">
+        <input type="submit" value="Crear Gasto">
     </div>
 </form>
