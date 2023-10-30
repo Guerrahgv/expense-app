@@ -8,8 +8,7 @@ require_once 'config/config.php';
 
 class ExpensesModelTest extends TestCase
 {
-    public function testSaveOk()
-    {
+    public function testSaveOk()    {
        
         $expense = new ExpensesModel();
         $expense->setTitle('Gasto test add');
@@ -23,8 +22,7 @@ class ExpensesModelTest extends TestCase
 
         $this->assertTrue($result);
     }
-    public function testSaveError()
-{
+    public function testSaveError(){
     $expense = new ExpensesModel();
     $expense->setTitle('Gasto'); // No cumple las validaciones, no debe guardar.
     $expense->setAmount(100);

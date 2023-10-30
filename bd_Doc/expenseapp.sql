@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2023 a las 15:35:39
+-- Tiempo de generación: 30-10-2023 a las 14:07:37
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -121,7 +121,8 @@ INSERT INTO `expenses` (`id`, `title`, `category_id`, `amount`, `date`, `id_user
 (24, 'Compra sueter', 3, 300000.00, '2023-04-01', 5),
 (25, 'juego Nintendo', 4, 200000.00, '2023-05-09', 5),
 (26, 'buy coffee students ', 1, 45000.00, '2023-06-13', 5),
-(27, 'mermelada', 1, 20000.00, '2023-09-27', 5);
+(27, 'mermelada', 1, 20000.00, '2023-09-27', 5),
+(43, 'compra de zapatos', 3, 100000.00, '2023-10-16', 5);
 
 -- --------------------------------------------------------
 
@@ -144,11 +145,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `budget`, `photo`, `name`) VALUES
-(5, 'roberto', '$2y$10$2rSgJFpMQIu846sVP3uV8eRGqQ2xW4DWaERiXNgQHH86h/pDSpwBy', 'user', 10000000.00, 'roberto.jpg', 'Roberto Fernadez'),
+(5, 'roberto', '$2y$10$2rSgJFpMQIu846sVP3uV8eRGqQ2xW4DWaERiXNgQHH86h/pDSpwBy', 'user', 5000000.00, '3e33eb9fd1bbdd0532d2e1aa55fcc2be.png', 'Henry guerrero'),
 (6, 'prueba', '$2y$10$gMCScVEtrGcKTXVahN2z5OyW6WZowx0PaySZgGYIGx5gXKHspNt16', 'user', 16000.00, '', 'prueba'),
 (7, 'Henry', '$2y$10$dlU7zI0cnJ6cUphgEipDReNhEL6/VHp4ELa7sLOiWnkcnVf35Gw82', 'user', 20000.00, '', 'henry'),
 (8, 'admin', '$2y$10$3Hxc2UAimmUWsb46c3SbH.mSlmFPQuK/WwIsdQL0zFxzulSonsFnG', 'admin', 0.00, '', ''),
-(68, 'testuser', '$2y$10$VxVLorATvcDjV6AUxG04veMCqlPTIFJ.wM7Icx40Q88mTHUMucD7W', 'user', 0.00, '', '');
+(70, 'carlosLindarte', '$2y$10$KucdNyePnXXwevkzRgi17.N/aRLdYljhyT5q9FiE2CMmZ4dOxEclG', 'user', 0.00, '', '');
 
 --
 -- Índices para tablas volcadas
@@ -189,13 +190,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de la tabla `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Restricciones para tablas volcadas

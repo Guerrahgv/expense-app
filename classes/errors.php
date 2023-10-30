@@ -8,7 +8,7 @@ class Errors{
     const ERROR_EXPENSES_NEWEXPENSE_EMPTY       = "a5bcd7089d83f45e17e989fbc86003ed";
     const ERROR_USER_UPDATEBUDGET               = "e99ab11bbeec9f63fb16f46133de85ec";
     const ERROR_USER_UPDATEBUDGET_EMPTY         = "807f75bf7acec5aa86993423b6841407";
-    const ERROR_USER_UPDATENAME_EMPTY           = "0f0735f8603324a7bca482debdf088fa";
+    const ERROR_USER_UPDATENAME_EMPTY           = "0f0735f8603324a7bca482debdf088faa";
     const ERROR_USER_UPDATENAME                 = "98217b0c263b136bf14925994ca7a0aa";
     const ERROR_USER_UPDATEPASSWORD             = "365009a3644ef5d3cf7a229a09b4d690";
     const ERROR_USER_UPDATEPASSWORD_EMPTY       = "0f0735f8603324a7bca482debdf088fa";
@@ -23,6 +23,10 @@ class Errors{
     const ERROR_SIGNUP_NEWUSER_EXISTS            = "a74accfd26e06d012266810952678cf3";
     const ERROR_SIGNUP_NEWUSER_INVA_DATE         = "a74a88fd26e06d012266810952678cf393";
     const ERROR_EXPENSES_INVALID_FIELDS          = "dsdhdce6bbf47d6b26a9cd809ea191022";
+    const ERROR_SIGNUP_NEWUSER_INVA_DATE_N       = "845dhdce6bbf47d6b26a9cd809ea191022";
+    const ERROR_USER_UPDATEPASSWORD__UPD         = "845dhdce6bbf48545252a9cd809ea19102";
+    const ERROR_USER_UPDATEPASSWORD__PATTERN     = "845dhdce6bbf485dfgh4552a9cd809ea19102";
+    const ERROR_USER_UPDATEBUDGET_VALIDATION     = "845dhdce6b8526hg45252a9cd809ea19102";
     private $errorsList = [];
 
     public function __construct()
@@ -33,12 +37,13 @@ class Errors{
             Errors::ERROR_EXPENSES_NEWEXPENSE       => 'Hubo un problema al crear el gasto, inténtalo de nuevo',
             Errors::ERROR_EXPENSES_NEWEXPENSE_EMPTY => 'Los campos no pueden estar vacíos',
             Errors::ERROR_USER_UPDATEBUDGET         => 'No se puede actualizar el presupuesto',
-            Errors::ERROR_USER_UPDATEBUDGET_EMPTY   => 'El presupuesto no puede estar vacio o ser negativo',
-            Errors::ERROR_USER_UPDATENAME_EMPTY     => 'El nombre no puede estar vacio o ser negativo',
+            Errors::ERROR_USER_UPDATEBUDGET_EMPTY   => 'El presupuesto no puede estar vacio, ser cero o ser negativo',
+            Errors::ERROR_USER_UPDATENAME_EMPTY     => 'El nombre no puede estar vacio',
             Errors::ERROR_USER_UPDATENAME           => 'No se puede actualizar el nombre',
-            Errors::ERROR_USER_UPDATEPASSWORD       => 'No se puede actualizar la contraseña',
-            Errors::ERROR_USER_UPDATEPASSWORD_EMPTY => 'El nombre no puede estar vacio o ser negativo',
-            Errors::ERROR_USER_UPDATEPASSWORD_ISNOTTHESAME => 'Los passwords no son los mismos',
+            Errors::ERROR_USER_UPDATEPASSWORD       => 'No se puede actualizar la contraseña, vuelve a intentarlo.',
+            Errors::ERROR_USER_UPDATEPASSWORD_EMPTY => 'La cotraseña no puede estar vacia',
+            Errors::ERROR_USER_UPDATEPASSWORD__UPD  => 'Debes enviar la contraseña actual mas la nueva contraseña',
+            Errors::ERROR_USER_UPDATEPASSWORD_ISNOTTHESAME => 'La contraseña actual es la misma',
             Errors::ERROR_USER_UPDATEPHOTO          => 'Hubo un error al actualizar la foto',
             Errors::ERROR_USER_UPDATEPHOTO_FORMAT   => 'El archivo no es una imagen',
             Errors::ERROR_LOGIN_AUTHENTICATE        => 'Hubo un problema al autenticarse',
@@ -48,7 +53,10 @@ class Errors{
             Errors::ERROR_SIGNUP_NEWUSER_EMPTY      => 'Los campos no pueden estar vacíos',
             Errors::ERROR_SIGNUP_NEWUSER_EXISTS     => 'El nombre de usuario ya existe, selecciona otro',
             Errors::ERROR_SIGNUP_NEWUSER_INVA_DATE  => 'los campos debe tener entre 5 y 30 caracteres',
+            Errors::ERROR_SIGNUP_NEWUSER_INVA_DATE_N => 'los campos deben tener entre 5 a 30 caracteres y no contener numeros',
             Errors::ERROR_EXPENSES_INVALID_FIELDS   => 'verifique los campos de gasto, Intente nuevamente', 
+            Errors::ERROR_USER_UPDATEPASSWORD__PATTERN=>'La nueva contraseña debe tener entre 5 y 30 caracteres',
+            Errors::ERROR_USER_UPDATEBUDGET_VALIDATION=>'Verifique el monto del presupuesto',
         ];
     }
 

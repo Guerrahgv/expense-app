@@ -1617,6 +1617,7 @@ class ComposerStaticInitc8fad7d16f556d79dd8382ad9ac17c3c
         'User' => __DIR__ . '/../..' . '/controllers/user.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'View' => __DIR__ . '/../..' . '/libs/view.php',
+        'budgetTest' => __DIR__ . '/../..' . '/test/budgetTest.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

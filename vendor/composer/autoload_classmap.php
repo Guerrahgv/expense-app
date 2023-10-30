@@ -1562,4 +1562,5 @@ return array(
     'User' => $baseDir . '/controllers/user.php',
     'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     'View' => $baseDir . '/libs/view.php',
+    'budgetTest' => $baseDir . '/test/budgetTest.php',
 );

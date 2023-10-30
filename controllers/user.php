@@ -19,82 +19,105 @@ class User extends SessionController{
     }
 
     function updateBudget(){
-        if(!$this->existPOST('budget')){
+
+        $budgetPattern= '/^(?:[1-9]\d{0,8}|[1-9]?\d{1,8})$/';
+
+        if($this->existPOST('budget')){
+            
+            $budget = $this->getPost('budget');
+
+            if(empty($budget) || $budget === 0 || $budget < 0){
+                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET_EMPTY]);
+                return;
+            }
+
+            if (preg_match($budgetPattern, $budget)){
+                $this->user->setBudget($budget);
+                $this->user->update();
+                $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEBUDGET]);   
+            }else{
+                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET_VALIDATION]);
+                return;
+            }
+        }else{
             $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET]);
             return;
-        }
-
-        $budget = $this->getPost('budget');
-
-        if(empty($budget) || $budget === 0 || $budget < 0){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET_EMPTY]);
-            return;
-        }
-    
-        $this->user->setBudget($budget);
-        if($this->user->update()){
-            $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEBUDGET]);
-        }else{
-            //error
         }
     }
 
     function updateName(){
-        if(!$this->existPOST('name')){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET]);
-            return;
-        }
-
-        $name = $this->getPost('name');
-
-        if(empty($name)){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEBUDGET]);
-            return;
-        }
         
-        $this->user->setName($name);
-        if($this->user->update()){
-            $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEBUDGET]);
-        }else{
-            //error
+        $usernamePattern = '/^[a-zA-Z\s]{5,30}/';
+
+        if($this->existPOST('name')){
+
+            $name= $this->getPost('name');
+            
+            if ($name == "" ) {
+                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATENAME_EMPTY]);
+              return;
+            }
+
+            if (preg_match($usernamePattern, $name)){
+                $this->user->setName($name);
+
+                if($this->user->update()){
+                $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATENAME]);
+                }
+               
+            }else{
+                $this->redirect('user', ['error' => Errors::ERROR_SIGNUP_NEWUSER_INVA_DATE_N]);
+                return; 
+            }
         }
     }
 
     function updatePassword(){
-        if(!$this->existPOST(['current_password', 'new_password'])){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD]);
-            return;
-        }
 
-        $current = $this->getPost('current_password');
-        $new     = $this->getPost('new_password');
+        $passwordPattern = '/^(?!\s)(?=\S)(?!.*\s$)[a-zA-Z0-9]{5,30}$/';
 
-        if(empty($current) || empty($new)){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD_EMPTY]);
-            return;
-        }
+        if($this->existPOST(['current_password', 'new_password'])){
 
-        if($current === $new){
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD_ISNOTTHESAME]);
-            return;
-        }
+            $current = $this->getPost('current_password');
+            $new     = $this->getPost('new_password');
 
-        //validar que el current es el mismo que el guardado
-        $newHash = $this->model->comparePasswords($current, $this->user->getId());
-        if($newHash != NULL){
-            //si lo es actualizar con el nuevo
-            $this->user->setPassword($new, true);
-            
-            if($this->user->update()){
-                $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEPASSWORD]);
-            }else{
-                //error
-                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD]);
+            if(empty($current) || empty($new)){
+                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD_EMPTY]);
+                return;
             }
+
+            if($current === $new){
+                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD_ISNOTTHESAME]);
+                return;
+            }
+
+            if (preg_match($passwordPattern, $new)) {
+                
+                $newHash = $this->model->comparePasswords($current, $this->user->getId());
+
+                if($newHash != NULL){
+                    //si lo es actualizar con el nuevo
+                    $this->user->setPassword($new, true);
+                    
+                    if($this->user->update()){
+                        $this->redirect('user', ['success' => Success::SUCCESS_USER_UPDATEPASSWORD]);
+                    }else{
+                        $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD]);
+                    }
+                }else{
+                    $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD]);
+                    return;
+                }   
+            }else{
+                $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD__PATTERN]);
+                return;
+            }
+
         }else{
-            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD]);
+            $this->redirect('user', ['error' => Errors::ERROR_USER_UPDATEPASSWORD__UPD]);
             return;
         }
+
     }
 
     function updatePhoto(){

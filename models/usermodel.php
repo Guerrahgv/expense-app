@@ -22,21 +22,27 @@ class UserModel extends Model implements IModel{
     }
 
     
-    function updateBudget($budget, $iduser){
-        try{
-            $query = $this->db->connect()->prepare('UPDATE users SET budget = :val WHERE id = :id');
-            $query->execute(['val' => $budget, 'id' => $iduser]);
-
-            if($query->rowCount() > 0){
-                return true;
-            }else{
-                return false;
+    function updateBudget($budget, $iduser) {
+        $budgetPattern = '/^(?:[1-9]\d{0,8}|[1-9]?\d{1,8})$/';
+    
+        if (preg_match($budgetPattern, $budget) && $budget > 0) {
+            try {
+                $query = $this->db->connect()->prepare('UPDATE users SET budget = :val WHERE id = :id');
+                $query->execute(['val' => $budget, 'id' => $iduser]);
+    
+                if ($query->rowCount() > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                return NULL;
             }
-        
-        }catch(PDOException $e){
-            return NULL;
+        } else {
+            return false;
         }
     }
+    
 
     function updateName($name, $iduser){
         try{
@@ -146,10 +152,6 @@ class UserModel extends Model implements IModel{
             echo $e;
         }
     }
-
-    /**
-     *  Gets an item
-     */
     public function get($id){
         try{
             $query = $this->prepare('SELECT * FROM users WHERE id = :id');
@@ -182,6 +184,7 @@ class UserModel extends Model implements IModel{
     }
 
     public function update(){
+
         try{
             $query = $this->prepare('UPDATE users SET username = :username, password = :password, budget = :budget, photo = :photo, name = :name WHERE id = :id');
             $query->execute([
@@ -230,7 +233,7 @@ class UserModel extends Model implements IModel{
     }
 
     public function setUsername($username){ $this->username = $username;}
-    //FIXME: validar si se requiere el parametro de hash
+  
     public function setPassword($password, $hash = true){ 
         if($hash){
             $this->password = $this->getHashedPassword($password);

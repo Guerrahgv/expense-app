@@ -2,6 +2,7 @@
 <?php
     $user = $this->d['user'];
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +10,8 @@
     <title>Change-Perfil</title>
     <link rel="stylesheet" href="<?php echo constant('URL') ?>public/css/user.css">
     <link rel="icon" type="image/png" href=" <?php echo constant('URL'); ?>public/img/icons/expenses.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script  src="<?php echo constant('URL'); ?>public/js/appJQ.js" defer></script>
     <title>History Expenses</title>
 
 </head>
@@ -22,7 +25,7 @@
                 <div id="user-info-container">
                     <div id="user-photo">
                     <?php if($user->getPhoto() != ''){?>
-                        <img src="public/img/photos/<?php echo $user->getPhoto(); ?>" width="200" />
+                        <img class="img__capture" src="public/img/photos/<?php echo $user->getPhoto(); ?>" width="200" />
                     <?php }
                     ?>
                     </div>
@@ -45,7 +48,7 @@
                     <form action=<?php echo constant('URL'). 'user/updateName' ?> method="POST">
                         <div class="section">
                             <label for="name">Nombre</label>
-                            <input type="text" name="name" id="name" autocomplete="off" required value="<?php echo $user->getName() ?>">
+                            <input type="text" name="name" id="name" autocomplete="off" value="<?php echo $user->getName() ?>" required>
                             <div><input type="submit" value="Cambiar nombre" /></div>
                         </div>
                     </form>
@@ -74,7 +77,7 @@
                             <input type="password" name="current_password" id="current_password" autocomplete="off" required>
 
                             <label for="new_password">Nuevo password</label>
-                            <input type="password" name="new_password" id="new_password" autocomplete="off" required>
+                            <input type="password" name="new_password" id="new_password" autocomplete="off" required >
                             <div><input type="submit" value="Cambiar password" /></div>
                         </div>
                     </form>
@@ -83,8 +86,10 @@
                 <section id="budget-user-container">
                     <form action="user/updateBudget" method="POST">
                         <div class="section">
-                            <label for="budget">Definir presupuesto</label>
-                            <div><input type="number" name="budget" id="budget" autocomplete="off" required value="<?php echo $user->getBudget() ?>"></div>
+                            <label for="budget">Definir presupuesto Anual:</label>
+                            <div>                          
+                                <input type="text" name="budget" id="budget" autocomplete="off" required value="<?php echo number_format($user->getBudget(), 0, '.', ',');  ?>">
+                            </div>
                             <div><input type="submit" value="Actualizar presupuesto" /></div>
                         </div>
                     </form>
