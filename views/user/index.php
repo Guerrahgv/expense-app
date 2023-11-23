@@ -48,7 +48,7 @@
                     <form action=<?php echo constant('URL'). 'user/updateName' ?> method="POST">
                         <div class="section">
                             <label for="name">Nombre</label>
-                            <input type="text" name="name" id="name" autocomplete="off" value="<?php echo $user->getName() ?>" required>
+                            <input type="text" name="name" id="name" autocomplete="off" value="<?php echo $user->getName() ?>" required maxlength="30" pattern=".{5,30}" title="El nombre debe tener entre 5 y 30 caracteres">
                             <div><input type="submit" value="Cambiar nombre" /></div>
                         </div>
                     </form>
@@ -74,10 +74,9 @@
                     <form action="<?php echo constant('URL'). 'user/updatePassword' ?>" method="POST">
                         <div class="section">
                             <label for="current_password">Password actual</label>
-                            <input type="password" name="current_password" id="current_password" autocomplete="off" required>
-
+                            <input type="password" name="current_password" id="current_password" autocomplete="off" required pattern=".{5,30}" title="La contraseña actual debe tener entre 5 y 30 caracteres">
                             <label for="new_password">Nuevo password</label>
-                            <input type="password" name="new_password" id="new_password" autocomplete="off" required >
+                            <input type="password" name="new_password" id="new_password" autocomplete="off" required pattern=".{5,30}" title="La contraseña debe tener entre 5 y 30 caracteres">
                             <div><input type="submit" value="Cambiar password" /></div>
                         </div>
                     </form>
@@ -86,9 +85,9 @@
                 <section id="budget-user-container">
                     <form action="user/updateBudget" method="POST">
                         <div class="section">
-                            <label for="budget">Definir presupuesto Anual:</label>
+                            <label for="budget">Definir presupuesto:</label>
                             <div>                          
-                                <input type="text" name="budget" id="budget" autocomplete="off" required value="<?php echo number_format($user->getBudget(), 0, '.', ',');  ?>">
+                            <input type="text" name="budget" id="budget" autocomplete="off" required value="<?php echo number_format($user->getBudget(), 0, '.', ','); ?>" pattern="^([1-9]\d{0,8}|999999999)$" title="El presupuesto debe estar entre 1 y 999,999,999">
                             </div>
                             <div><input type="submit" value="Actualizar presupuesto" /></div>
                         </div>
